@@ -1,8 +1,11 @@
 {
-  "name": "MemarealWeb",
+  "name": "chat",
   "version": "0.1.0",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon --inspect --watch src/server src/server",
+    "test-api": "tests/api/channels.sh && tests/api/users.sh && tests/api/user_in_channel.sh && tests/api/messages.sh",
+    "init-db": "psql -f db/create-tables.sql messenger-database",
+
     "start": "cross-env NODE_ENV=production pm2 start build/server --watch",
     "build": "npm run build:client && npm run build:server",
     "build:client": "cross-env NODE_ENV=production webpack -p --progress --config=config/webpack.config.prod.js",

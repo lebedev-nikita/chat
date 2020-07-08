@@ -1,6 +1,7 @@
 # memareal-web
-После выгрузки проекта необходимо установить зависимости: npm install
+> npm install  
+npm run-script dev
 
-Запуск в режиме девелопера: npm run-script dev (запустится сервер localhost:30001)
+http://localhost:30001
 
 По умолчанию просто выводим JSON параметров для заданного запроса

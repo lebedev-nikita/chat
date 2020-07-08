@@ -27,8 +27,8 @@ app.use(cookieParser());
 setupApiRoutes(app);
 setupAppRoutes(app);
 
-const srvr = http.createServer(app);
-srvr.listen(process.env.HTTP_PORT, () => {
+app.listen(process.env.HTTP_PORT, () => {
   console.log(`Server is now running on http://localhost:${process.env.HTTP_PORT}`);
 });
-srvr.timeout = 1800000;
+
+app.timeout = 1800000;
