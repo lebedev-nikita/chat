@@ -5,7 +5,6 @@
     "dev": "cross-env NODE_ENV=development nodemon --inspect --watch src/server src/server",
     "test-api": "tests/api/channels.sh && tests/api/users.sh && tests/api/user_in_channel.sh && tests/api/messages.sh",
     "init-db": "psql -f db/create-tables.sql messenger-database",
-
     "start": "cross-env NODE_ENV=production pm2 start build/server --watch",
     "build": "npm run build:client && npm run build:server",
     "build:client": "cross-env NODE_ENV=production webpack -p --progress --config=config/webpack.config.prod.js",
@@ -77,6 +76,7 @@
     "react-youtube": "^7.9.0",
     "redux": "^4.0.4",
     "redux-logger": "3.0.6",
+    "response-time": "^2.3.2",
     "sanitize.css": "8.0.0",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
