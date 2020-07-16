@@ -1,4 +1,4 @@
-const { jsonInQuotesOrNull, strInQuotesOrNull } = require("./helpers");
+const addQuotes = require("../helpers/addQuotes");
 const { client } = require('../../services/pg');
 
 

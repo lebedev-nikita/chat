@@ -1,4 +1,4 @@
-const { jsonInQuotesOrNull, strInQuotesOrNull } = require("./helpers");
+const addQuotes = require("../helpers/addQuotes");
 const { client } = require('../../services/pg');
 
 
@@ -7,7 +7,7 @@ async function postMessage(req, res) {
         const channel_id = req.params.channelId;
         const answer_to_id = req.body.answer_to_id || null;
         const user_id = req.body.user_id;
-        const _text = strInQuotesOrNull(req.body._text);
+        const _text = addQuotes(req.body._text);
 
         await client.query(`
             INSERT INTO messages(id, channel_id, answer_to_id, user_id, date_time, _text)

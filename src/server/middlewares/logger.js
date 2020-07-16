@@ -1,7 +1,9 @@
 const { client } = require('../services/pg'); // object of type Pool from require('pg')
 const putQueryTime = require('response-time');
+const addQuotes = require('./helpers/addQuotes');
 
-const IS_PROD = process.env.NODE_ENV === 'production';
+// const IS_PROD = process.env.NODE_ENV === 'production';
+const IS_PROD = true;
 const IS_DEV = process.env.NODE_ENV === 'development';
 
 module.exports = putQueryTime(log);
@@ -53,20 +55,5 @@ async function logToPostgres(req, queryTime) {
         `);
     } catch(err) {
         console.log(err.stack);
-    }
-}
-
-function addQuotes(param) {
-    switch(typeof(param)) {
-        case 'object': 
-            if (param === null) {
-                return 'null';
-            } else {                
-                return "'" + JSON.stringify(param) + "'";
-            }
-        case 'undefined':
-            return 'null';
-        default:
-            return "'" + param.toString() + "'";
     }
 }

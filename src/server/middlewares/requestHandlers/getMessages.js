@@ -1,4 +1,5 @@
-const { jsonInQuotesOrNull, strInQuotesOrNull } = require("./helpers");
+const addQuotes = require("../helpers/addQuotes");
+const setPropertiesToId = require('../helpers/setPropertiesToId');
 const { client } = require('../../services/pg');
 
 
@@ -7,7 +8,9 @@ async function getMessages (req, res) {
         const { rows } = await client.query(`
             SELECT * FROM messages WHERE channel_id=${req.params.channelId}
         `);
-        res.send(rows);
+        
+        const ret = setPropertiesToId(rows);
+        res.send(ret);
     } catch(err) {
         console.log(err.stack);
         res.send("Error");
