@@ -4,7 +4,7 @@ const { client } = require('../../services/pg');
 
 async function getChannel(req, res) {
   try {
-    const channel_id = req.params.channelId;
+    const channel_id = req.query.channel_id;
 
     const { rows } = await client.query(`
       SELECT * FROM channels WHERE id=${channel_id}

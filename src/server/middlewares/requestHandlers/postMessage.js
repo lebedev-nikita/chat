@@ -4,7 +4,7 @@ const { client } = require('../../services/pg');
 
 async function postMessage(req, res) {
   try {
-    const channel_id = req.params.channelId;
+    const channel_id = req.body.channel_id;
     const answer_to_id = req.body.answer_to_id || null;
     const user_id = req.body.user_id;
     const _text = addQuotes(req.body._text);
