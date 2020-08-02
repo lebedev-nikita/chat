@@ -1,4 +1,4 @@
-const {resolve, join} = require('path');
+const { resolve, join } = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
@@ -17,7 +17,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         use: ['babel-loader'],
         exclude: /node_modules/
       },
@@ -30,7 +30,7 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: {
             loader: 'style-loader',
-            options: {sourceMap: IS_DEV}
+            options: { sourceMap: IS_DEV }
           },
           use: [
             {
@@ -43,7 +43,7 @@ module.exports = {
             },
             {
               loader: 'sass-loader',
-              options: {sourceMap: IS_DEV}
+              options: { sourceMap: IS_DEV }
             },
             {
               loader: 'postcss-loader',
@@ -60,33 +60,31 @@ module.exports = {
         test: /\.(eot|ttf|woff|woff2)$/,
         loader: 'file-loader'
       },
-	  {
+      {
         test: /\.(jpe?g|png|gif|svg)$/,
         use: [{
           loader: 'url-loader',
           options: {
             limit: 10000,
-			name: 'img/[name].[ext]'
+            name: 'img/[name].[ext]'
           }
         }]
       }
     ]
   },
   plugins: [
-        new CopyWebpackPlugin([
-            { from: './src/client/public/favicon.ico'}
-        ]),
-        new CopyWebpackPlugin([
-              { from: './src/client/public/img', to:'img'}
-        ]),
-        new ExtractTextPlugin({
-          filename: '[name].css',
-          disable: IS_DEV
-        }),
-        new webpack.EnvironmentPlugin(['NODE_ENV'])
+    new CopyWebpackPlugin([
+      { from: './src/client/public/favicon.ico', to: 'img' }
+    ]),
+    new ExtractTextPlugin({
+      filename: '[name].css',
+      disable: IS_DEV
+    }),
+    new webpack.EnvironmentPlugin(['NODE_ENV'])
   ],
   resolve: {
-    modules: ['node_modules', join('src', 'client')]
+    modules: ['node_modules', join('src', 'client')],
+    extensions: ['.js', '.jsx']
   },
   optimization: {
     splitChunks: {

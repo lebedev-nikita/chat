@@ -2,6 +2,7 @@
   "retainLines": true,
   "plugins": ["react-hot-loader/babel", "@babel/plugin-proposal-class-properties"],
   "presets": [
+    "@babel/preset-react",
     [
       "@babel/preset-env",
       {
@@ -10,8 +11,7 @@
           "browsers": ["> 0.5%", "not dead"]
         }
       }
-    ],
-    "@babel/preset-react"
+    ]
   ],
   "env": {
     "test": {

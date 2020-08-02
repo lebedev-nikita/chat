@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Catch from './catch';
-import Main from './pages/main';
+import Main from './pages/Main';
 import { store } from './redux';
 
 
