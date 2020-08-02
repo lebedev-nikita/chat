@@ -2,7 +2,6 @@ import './index.scss';
 import React, { useLayoutEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { setPosts } from "../../redux";
-import getPosts from "../../services/getPosts";
 import { divide } from 'lodash';
 
 
