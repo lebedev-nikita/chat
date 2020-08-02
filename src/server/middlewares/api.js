@@ -11,22 +11,22 @@ const { postChannel } = require("./requestHandlers/postChannel");
 const { getAllUsers } = require("./requestHandlers/getAllUsers");
 
 module.exports = function setupApiRoutes(app) {
-    //channels
-    app.post('/api/channels', postChannel);
-    app.get('/api/channels/', getAllChannels);
-    app.get('/api/channels/:channelId', getChannel);
+  //channels
+  app.post('/api/channels', postChannel);
+  app.get('/api/channels/', getAllChannels);
+  app.get('/api/channels/:channelId', getChannel);
 
-    //messages
-    app.post('/api/channels/:channelId/messages', postMessage);
-    app.get('/api/channels/:channelId/messages', getMessages);
+  //messages
+  app.post('/api/channels/:channelId/messages', postMessage);
+  app.get('/api/channels/:channelId/messages', getMessages);
 
-    //users
-    app.post('/api/users', postUser);
-    app.get('/api/users', getAllUsers);
-    app.get('/api/users/:userId', getUser);
+  //users
+  app.post('/api/users', postUser);
+  app.get('/api/users', getAllUsers);
+  app.get('/api/users/:userId', getUser);
 
-    //user_in_channel
-    app.post('/api/channels/:channelId/users/:userId', postUserInChannel);
-    app.get('/api/channels/:channelId/users/', getUsersOfChannel);
-    app.get('/api/users/:userId/channels/', getChannelsOfUser);
+  //user_in_channel
+  app.post('/api/channels/:channelId/users/:userId', postUserInChannel);
+  app.get('/api/channels/:channelId/users/', getUsersOfChannel);
+  app.get('/api/users/:userId/channels/', getChannelsOfUser);
 };
