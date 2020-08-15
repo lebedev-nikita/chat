@@ -1,16 +1,16 @@
-import './index.scss';
-import React from 'react';
-import Authorization from './Authorization';
+import './index.scss'
+import React from 'react'
+import Authorization from './Authorization'
 
 
 const Main = () => {
 
-  let [needAuthorization, setNeedAuthorization] = React.useState(true);
+  let [needAuthorization, setNeedAuthorization] = React.useState(true)
 
   const startAuthorization = () => {
-    setNeedAuthorization(!needAuthorization);
-    console.log(needAuthorization);
-  };
+    setNeedAuthorization(!needAuthorization)
+    console.log(needAuthorization)
+  }
 
   return (
     <div className="Main">
@@ -20,7 +20,7 @@ const Main = () => {
       <button onClick={startAuthorization}>AUTHORIZE</button>
       {needAuthorization ? <Authorization /> : <div />}
     </div>
-  );
+  )
 }
 
-export default Main;
+export default Main

@@ -1,21 +1,17 @@
-import React from 'react';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+import React from 'react'
+import SignIn from './SignIn'
+import SignUp from './SignUp'
 
 const Authorization = () => {
-  // return (
-  //   <p>Authorization will be here!</p>
-  // )
-  
-  // let [wantForm, setWantForm] = React.useState(false);
 
-  let hasAccount = confirm('Do you already heave an account?');
+  // let hasAccount = confirm('Do you already heave an account?')
+  let hasAccount = false
 
   if (hasAccount) {
-    return (<SignIn/>);
+    return (<SignIn/>)
   } else {
     return (<SignUp/>)
   }
 }
 
-export default Authorization;
+export default Authorization
