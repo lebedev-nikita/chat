@@ -5,10 +5,11 @@ import {
   rsaEncrypt,
   rsaDecrypt,
 
+  generateAesKey,
+  generateUnlockKey,
   generatePwdKey,
   aesEncrypt,
   aesDecrypt,
-  generateUnlockKey
 } from './lowLevelEncryption'
 
 function testRsa() {
@@ -41,7 +42,7 @@ function testUnlockKey() {
 
 
 function testPwdKey(login, password) {
-  const testString = 'Test passed: pwdKey '
+  const testString = 'Test passed: pwdKey'
   const key = generatePwdKey(login, password)
   const iv = forge.random.getBytesSync(32)
 
@@ -50,4 +51,33 @@ function testPwdKey(login, password) {
   console.log(dec)
 }
 
-export { testRsa, testAes, testUnlockKey, testPwdKey }
+function testRsaOfAes() {
+  const testString = 'Test passed: Rsa(Aes)'
+
+  const rsaKeyPair = generateRsaKeyPair()
+  const aesKey = generateAesKey()
+  const iv = forge.random.getBytesSync(32)
+
+  const encStr = aesEncrypt(testString, aesKey, iv)
+  const encAesKey = rsaEncrypt(aesKey, rsaKeyPair.public)
+  const decAesKey = rsaDecrypt(encAesKey, rsaKeyPair.private)
+  const decStr = aesDecrypt(encStr, decAesKey, iv)
+  console.log(decStr)
+}
+
+function testAesOfRsa() {
+  const testString = 'Test passed: Aes(Rsa)'
+
+  const rsaKeyPair = generateRsaKeyPair()
+  const aesKey = generateAesKey()
+  const iv = forge.random.getBytesSync(32)
+
+  const encStr = rsaEncrypt(testString, rsaKeyPair.public)
+  const encRsaKey = aesEncrypt(rsaKeyPair.private, aesKey, iv)
+  const decRsaKey = aesDecrypt(encRsaKey, aesKey, iv)
+  const decStr = rsaDecrypt(encStr, decRsaKey)
+  console.log(decStr)
+}
+
+
+export { testRsa, testAes, testUnlockKey, testPwdKey, testRsaOfAes, testAesOfRsa }

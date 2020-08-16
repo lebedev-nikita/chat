@@ -1,4 +1,5 @@
 import forge from 'node-forge'
+import hexyjs from 'hexyjs'
 
 // TODO: Разобраться, что такое 'e'
 // TODO: сделать генерацию ключей асинхронной
@@ -57,10 +58,8 @@ function aesDecrypt(value, key, iv = defaultIV) {
   decipher.start({ iv: iv })
   decipher.update(value)
   let result = decipher.finish() // check 'result' for true/false
-  // return String.fromCharCode.apply(null, decipher.output) 
   const hex = decipher.output.toHex()
   return hexyjs.hexToStr(hex)
-  // .toString()
 }
 
 
@@ -69,6 +68,7 @@ export {
   rsaEncrypt,
   rsaDecrypt,
 
+  generateAesKey,
   generatePwdKey,
   generateUnlockKey,
   generateChannelKey,

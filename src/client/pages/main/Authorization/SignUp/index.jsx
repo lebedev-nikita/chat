@@ -1,5 +1,5 @@
 import React from 'react'
-import { testRsa, testAes, testUnlockKey, testPwdKey } from '../../../../services/encTests'
+import { testRsa, testAes, testUnlockKey, testPwdKey, testRsaOfAes, testAesOfRsa } from '../../../../services/encTests'
 
 function testFunc() {
   const login = document.getElementById('signup_login').value
@@ -9,6 +9,8 @@ function testFunc() {
   testAes()
   testUnlockKey()
   testPwdKey(login, password)
+  testRsaOfAes()
+  testAesOfRsa()
 }
 
 function SignUp() {
