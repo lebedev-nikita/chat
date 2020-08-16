@@ -84,4 +84,14 @@ CREATE TABLE logs (
   ip          TEXT NOT NULL,
   url         TEXT NOT NULL,
   domain      TEXT NOT NULL
-)
+);
+
+DROP TYPE IF EXISTS key_type;
+CREATE TYPE key_type AS ENUM ('unlock_key', 'channel_key', 'sign_pub_key', 'sign_priv_key', 'pub_key', 'priv_key' );
+
+-- Подумать, как можно оптимизировать
+CREATE TABLE keys (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGSERIAL REFERENCES users(id),
+  type key_type
+);

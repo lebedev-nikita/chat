@@ -72,10 +72,15 @@ function testAesOfRsa() {
   const aesKey = generateAesKey()
   const iv = forge.random.getBytesSync(32)
 
+  const pemRsaPriv = forge.pki.privateKeyToPem(rsaKeyPair.private)
+
   const encStr = rsaEncrypt(testString, rsaKeyPair.public)
-  const encRsaKey = aesEncrypt(rsaKeyPair.private, aesKey, iv)
-  const decRsaKey = aesDecrypt(encRsaKey, aesKey, iv)
-  const decStr = rsaDecrypt(encStr, decRsaKey)
+  const encPemRsaKey = aesEncrypt(pemRsaPriv, aesKey, iv)
+  const decPemRsaPriv = aesDecrypt(encPemRsaKey, aesKey, iv)
+
+  const decRsaPriv = forge.pki.privateKeyFromPem(decPemRsaPriv)
+
+  const decStr = rsaDecrypt(encStr, decRsaPriv)
   console.log(decStr)
 }
 
