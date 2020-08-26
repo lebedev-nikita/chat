@@ -1,9 +1,8 @@
-.main{
-    text-align: center;
-    &.mobile{
-        .ps__thumb-y{
-            display: none;
-        }
+.Main{
+  text-align: center;
+  &.mobile{
+    .ps__thumb-y{
+      display: none;
     }
-
+  }
 }

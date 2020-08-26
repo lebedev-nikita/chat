@@ -4,8 +4,8 @@ const { client } = require('../../services/pg');
 
 async function postUserInChannel(req, res) {
   try {
-    const channel_id = req.params.channelId;
-    const user_id = req.params.userId;
+    const channel_id = req.body.channel_id;
+    const user_id = req.body.user_id;
     const preferences = addQuotes(req.body.preferences);
     const _enckey_user = addQuotes(req.body._enckey_user);
     const user_role = addQuotes(req.body.user_role);

@@ -5,7 +5,7 @@ const { client } = require('../../services/pg');
 
 async function getChannelsOfUser(req, res) {
   try {
-    const user_id = req.params.userId;
+    const user_id = req.query.user_id;
 
     const { rows } = await client.query(`
       SELECT c.* FROM user_in_channel uic INNER JOIN channels c
